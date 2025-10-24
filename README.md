@@ -1,196 +1,251 @@
-# LM Proxy
+# 🚀 LMHack
 
-An extension that enables external applications to access VSCode's GitHub Copilot capabilities through OpenAI and Anthropic compatible REST APIs, allowing you to leverage the power of GitHub Copilot outside of the VSCode environment. This extension utilizes the VSCode Language Model API (LM API) to communicate with the language models provided by GitHub Copilot.
+**The Smart Bridge for Local LLM Ecosystems**
 
----
-
-## Features
-
-- **External GitHub Copilot Access**: Use GitHub Copilot's powerful AI capabilities from any application, not just within VSCode.
-- **OpenAI & Anthropic Compatible APIs**: Access GitHub Copilot through industry-standard API formats that are compatible with OpenAI's and Anthropic's interfaces.
-- **CLI-based Coding Assistant Support**: Compatible with various [CLI-based coding assistants](https://clicodingagents.com/#directory) including [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [OpenAI Codex CLI](https://developers.openai.com/codex/cli/), and other tools that support OpenAI or Anthropic API formats.
-- **Multiple Model Support**: Seamlessly switch between different language models available in VSCode, including GitHub Copilot's models.
-- **Server Management**: Easily start and stop the proxy server through the VSCode command palette or status bar.
-- **Streaming Support**: Full support for streaming responses for real-time applications.
-- **Flexible Configuration**: Customize the server port and log levels to fit your needs.
+*Intelligent proxy that connects LM Studio seamlessly with AnyLLM, BrowserOS, and beyond. Zero-config, auto-healing, context-aware.*
 
 ---
 
-## Installation
+## 🎯 What Makes LMHack Different?
 
-1. Open the **Extensions** view in VSCode.
-2. Search for "LM Proxy".
-3. Click **Install**.
+While the original [vscode-lm-proxy](https://github.com/ryonakae/vscode-lm-proxy) focuses on exposing GitHub Copilot, **LMHack adds the crucial 20%** that transforms your local LLM setup into a professional, unified ecosystem.
 
-Alternatively, you can download the `.vsix` file from the [releases page](https://github.com/ryonakae/vscode-lm-proxy/releases) and install it manually using the "Install from VSIX..." command.
+### ✨ **The 20% That Changes Everything**
+
+#### 🔧 **Zero-Touch Configuration**
+- **Auto-detection** of LM Studio instances
+- **Smart configuration** of AnyLLM and BrowserOS
+- **One-click setup** instead of manual endpoint management
+
+#### 🩺 **Intelligent Health Monitoring** 
+- **Auto-reconnection** when LM Studio restarts
+- **Real-time performance** metrics (GPU, memory, tokens/sec)
+- **Proactive notifications** to connected clients
+
+#### 🔄 **Unified Model Management**
+- **Centralized control** of LM Studio models from any app
+- **Hot model switching** without restart
+- **Load balancing** across multiple model instances
+
+#### 🧠 **Context Sharing Revolution**
+- **Cross-app memory**: AnyLLM analysis ↔ BrowserOS actions
+- **Intelligent routing** based on task type
+- **Persistent context** across sessions
 
 ---
 
-## Usage
+## 🏗️ **Architecture**
 
-### Starting the Server
-
-1. Open the Command Palette.
-2. Run the `LM Proxy: Start LM Proxy Server` command.
-3. The server status will be displayed in the status bar.
-
-### Stopping the Server
-
-1. Open the Command Palette.
-2. Run the `LM Proxy: Stop LM Proxy Server` command.
-
-### Selecting a Language Model
-
-1. Open the Command Palette.
-2. Run one of the following commands:
-   - `LM Proxy: Select OpenAI API Model`
-   - `LM Proxy: Select Anthropic API Model` 
-   - `LM Proxy: Select Claude Code Background Model`
-   - `LM Proxy: Select Claude Code Thinking Model`
-3. Choose your desired model from the list.
-
-### Use with CLI-based Coding Assistants
-
-This extension is compatible with various [CLI-based coding assistants](https://clicodingagents.com/#directory) that support OpenAI or Anthropic API formats:
-
-#### Claude Code
-You may need to set the `ANTHROPIC_BASE_URL` environment variable to use Claude Code. Set `ANTHROPIC_BASE_URL` to `http://localhost:4000/anthropic/claude` (replace `4000` with your configured port if different).  
-This allows you to use Claude Code via the endpoints provided by LM Proxy—in other words, you can access the LLMs offered by GitHub Copilot through Claude Code.
-
-#### OpenAI Codex CLI
-1. Set the `OPENAI_API_KEY` environment variable to a dummy value (e.g., `'xxx'`)
-2. Add the following configuration to `~/.codex/config.toml`:
-
-```toml
-model = "vscode-lm-proxy"
-model_provider = "vscode-lm-proxy"
-
-[model_providers.vscode-lm-proxy]
-name = "VSCode LM Proxy"
-base_url = "http://localhost:4000/openai"
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│    AnyLLM       │◄──►│    LMHack       │◄──►│   BrowserOS     │
+│  (Documents)    │    │  Smart Proxy    │    │  (Web Actions)  │  
+│                 │    │                 │    │                 │
+│ • RAG Queries   │    │ • Auto Config   │    │ • Web Research  │
+│ • Doc Analysis  │    │ • Health Check  │    │ • Data Extract  │
+│ • Knowledge     │    │ • Model Switch  │    │ • Automation    │
+└─────────────────┘    │ • Context Share │    └─────────────────┘
+                       │ • Performance   │
+                       └─────────────────┘
+                                │
+                                ▼
+                       ┌─────────────────┐
+                       │   LM Studio     │
+                       │  (Local Models) │
+                       │                 │
+                       │ • Llama 3.2     │
+                       │ • Qwen 2.5      │
+                       │ • Mistral 7B    │
+                       └─────────────────┘
 ```
 
-#### Other CLI-based Coding Assistants
-Any other CLI-based coding assistants that are compatible with OpenAI API or Anthropic API and allow configuration of base URL and model names should be able to utilize LM Proxy as well. Simply configure the base URL to point to your LM Proxy server and set the appropriate model name.
+---
 
-#### How Model Selection Works
-- If you specify the model name as `vscode-lm-proxy`, the model selected in the extension settings will be used.
-- If you specify a model name directly (e.g. `gpt-4.1` or `claude-3.5-sonnet`), that model will be used for the request.
+## 🚀 **Quick Start**
+
+### Prerequisites
+- [LM Studio](https://lmstudio.ai) running with local server enabled
+- [AnyLLM](https://useanything.com) and/or [BrowserOS](https://browseros.com) installed
+- VS Code (for extension mode)
+
+### Installation
+
+#### Option 1: VS Code Extension (Recommended)
+```bash
+# Install from VS Code Marketplace
+code --install-extension gerivdb.lmhack
+```
+
+#### Option 2: Standalone CLI
+```bash
+npm install -g lmhack
+lmhack start
+```
+
+#### Option 3: Docker
+```bash
+docker run -p 4000:4000 gerivdb/lmhack
+```
+
+### Zero-Config Setup
+```bash
+# LMHack auto-detects and configures everything!
+lmhack init
+# ✅ Found LM Studio at localhost:1234
+# ✅ Configured AnyLLM connection
+# ✅ Configured BrowserOS connection  
+# 🚀 LMHack bridge active at localhost:4000
+```
 
 ---
 
-## API Reference
+## 🔌 **Supported Integrations**
 
-The proxy server exposes the following endpoints:
+### **Primary Targets**
+- ✅ **LM Studio** - Full model management & health monitoring
+- ✅ **AnyLLM** - Document processing & RAG workflows
+- ✅ **BrowserOS** - Web automation & research
 
-### OpenAI Compatible API
+### **Extended Compatibility**
+- ✅ **Cursor** - Code completion with local models
+- ✅ **Continue.dev** - VS Code coding assistant
+- ✅ **Open WebUI** - Chat interface
+- ✅ **Any OpenAI-compatible tool**
 
-- **Chat Completions**: `POST /openai/v1/chat/completions` (supports streaming via the `stream` parameter)
+---
+
+## 📊 **Performance Dashboard**
+
+LMHack includes a real-time monitoring dashboard:
 
 ```bash
-curl -X POST http://localhost:4000/openai/v1/chat/completions \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "vscode-lm-proxy",
-    "messages": [{"role":"user","content":"Hello!"}],
-    "stream": true
-  }'
-```
-- **List Models**: `GET /openai/v1/models`
-
-```bash
-curl http://localhost:4000/openai/v1/models
-```
-- **Retrieve Model**: `GET /openai/v1/models/{model}`
-
-```bash
-curl http://localhost:4000/openai/v1/models/gpt-4.1
+lmhack dashboard
 ```
 
-### Anthropic Compatible API
-
-- **Messages**: `POST /anthropic/v1/messages` (supports streaming via the `stream` parameter)
-
-```bash
-curl -X POST http://localhost:4000/anthropic/v1/messages \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "vscode-lm-proxy",
-    "messages": [{"role":"user","content":"Hello!"}],
-    "stream": true
-  }'
-```
-- **Count Tokens**: `POST /anthropic/v1/messages/count_tokens` (counts the number of tokens in a message)
-
-```bash
-curl -X POST http://localhost:4000/anthropic/v1/messages/count_tokens \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "vscode-lm-proxy",
-    "messages": [{"role":"user","content":"Hello, Claude"}]
-  }'
-```
-- **List Models**: `GET /anthropic/v1/models`
-- **Retrieve Model**: `GET /anthropic/v1/models/{model}`
-
-### Claude Code Compatible API
-
-- **Messages**: `POST /anthropic/claude/v1/messages` (supports streaming via the `stream` parameter)
-
-```bash
-curl -X POST http://localhost:4000/anthropic/claude/v1/messages \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "model": "vscode-lm-proxy",
-    "messages": [{"role":"user","content":"Hello!"}],
-    "stream": true
-  }'
-```
-- **Count Tokens**: `POST /anthropic/claude/v1/messages/count_tokens`
-- **List Models**: `GET /anthropic/claude/v1/models`
-- **Retrieve Model**: `GET /anthropic/claude/v1/models/{model}`
-
-For detailed information about the request and response formats, please refer to the official [OpenAI API documentation](https://platform.openai.com/docs/api-reference) and [Anthropic API documentation](https://docs.anthropic.com/en/api/overview).
+**Metrics tracked:**
+- 🔥 GPU utilization and memory usage
+- ⚡ Tokens per second throughput 
+- 📊 Request queue length
+- ⏱️ Model load times
+- 🔄 Auto-reconnection events
+- 📈 Cross-app context sharing
 
 ---
 
-## Configuration
+## 🛠️ **Advanced Features**
 
-You can configure the extension settings in the VSCode settings UI or by editing your `settings.json` file.
+### Model Hot-Swapping
+```javascript
+// Switch models based on task complexity
+const response = await lmhack.request({
+    message: "Complex coding task",
+    auto_model: "performance" // Auto-selects best model
+});
+```
 
-- `vscode-lm-proxy.port`: The port number for the proxy server. (Default: `4000`)
-- `vscode-lm-proxy.logLevel`: The log level for the extension. (Default: `1` for INFO)
-- `vscode-lm-proxy.showOutputOnStartup`: Whether to show the output panel on startup. (Default: `false`)
+### Context Bridging
+```javascript
+// AnyLLM processes document
+const analysis = await anyllm.analyze(document);
+
+// Context automatically available in BrowserOS
+const webActions = await browseros.actOnAnalysis();
+```
+
+### Health Monitoring
+```javascript
+lmhack.on('lmstudio_disconnected', async () => {
+    await lmhack.waitForReconnection();
+    await lmhack.notifyClients('LM Studio reconnected');
+});
+```
 
 ---
 
-## Commands
+## 🔧 **Configuration**
 
-The following commands are available in the Command Palette:
+### VS Code Settings
+```json
+{
+  "lmhack.port": 4000,
+  "lmhack.autoConfig": true,
+  "lmhack.contextSharing": true,
+  "lmhack.healthMonitoring": true,
+  "lmhack.performanceDashboard": true
+}
+```
 
-- `LM Proxy: Start LM Proxy Server`: Starts the proxy server.
-- `LM Proxy: Stop LM Proxy Server`: Stops the proxy server.
-- `LM Proxy: Select OpenAI API Model`: Selects the OpenAI model to use.
-- `LM Proxy: Select Anthropic API Model`: Selects the Anthropic model to use.
-- `LM Proxy: Select Claude Code Background Model`: Selects the Claude Code background model to use.
-- `LM Proxy: Select Claude Code Thinking Model`: Selects the Claude Code thinking model to use.
-- `LM Proxy: Show Output Panel`: Shows the extension's output panel.
-- `LM Proxy: Clear Output Panel`: Clears the extension's output panel.
-- `LM Proxy: Set Log Level`: Sets the log level.
+### Standalone Config
+```yaml
+# lmhack.config.yml
+server:
+  port: 4000
+  host: "0.0.0.0"
+
+lmstudio:
+  endpoint: "http://localhost:1234"
+  auto_detect: true
+  health_check_interval: 5000
+
+integrations:
+  anyllm:
+    enabled: true
+    auto_configure: true
+  browseros:
+    enabled: true
+    auto_configure: true
+
+features:
+  context_sharing: true
+  model_management: true
+  performance_monitoring: true
+```
 
 ---
 
-## How It Works
+## 🤝 **Contributing**
 
-LM Proxy leverages the VSCode Language Model API (LM API) to communicate with GitHub Copilot's language models. The extension acts as a bridge between external applications and VSCode's built-in language model capabilities:
+LMHack is built on the solid foundation of [vscode-lm-proxy](https://github.com/ryonakae/vscode-lm-proxy) by [@ryonakae](https://github.com/ryonakae). 
 
-1. The extension starts a local proxy server that implements OpenAI and Anthropic compatible API endpoints
-2. When a request is received, it translates the request into the appropriate format for the VSCode Language Model API
-3. The response from GitHub Copilot (via the LM API) is then converted back into the expected OpenAI or Anthropic format
-4. This enables seamless integration with existing applications and tools that are designed to work with these popular API formats
+**Areas where we need help:**
+- 🔌 Additional integrations (Ollama, MLX, etc.)
+- 📊 Enhanced performance metrics
+- 🎨 Dashboard UI improvements
+- 🐛 Bug fixes and optimizations
 
-This approach allows you to utilize the full power of GitHub Copilot in your applications without having to implement custom integrations.
+### Development Setup
+```bash
+git clone https://github.com/gerivdb/lmhack.git
+cd lmhack
+npm install
+npm run dev
+```
 
-## License
+---
 
-This extension is licensed under the [MIT License](LICENSE).
+## 📜 **License**
+
+MIT License - Same as the original vscode-lm-proxy
+
+---
+
+## 🙏 **Acknowledgments**
+
+- **[@ryonakae](https://github.com/ryonakae)** for the excellent vscode-lm-proxy foundation
+- **LM Studio team** for the best local LLM server
+- **AnyLLM & BrowserOS communities** for pushing local-first AI
+
+---
+
+## 🚀 **What's Next?**
+
+- [ ] **LMHack Pro**: Advanced load balancing
+- [ ] **LMHack Cloud**: Secure tunnel for remote access  
+- [ ] **LMHack Marketplace**: Plugin ecosystem
+- [ ] **Multi-GPU support**: Distribute workloads
+
+---
+
+*"Hacking the future of local LLM ecosystems, one bridge at a time."* ⚡
+
+**Star ⭐ this repo if LMHack solves your local LLM integration challenges!**
