@@ -1,0 +1,416 @@
+# VS Code LM Proxy - LLM Models Database Template
+# Template pour gérer les modèles LLM supportés par différents outils
+# Évite le hardcoding et permet une gestion centralisée
+
+# Structure de base pour chaque outil
+tools:
+  # Cline - https://cline.bot/
+  cline:
+    name: "Cline"
+    website: "https://cline.bot/"
+    github: "https://github.com/cline/cline"
+    description: "AI coding agent open source avec architecture client-side"
+    supported_models:
+      - id: "claude-3-5-sonnet"
+        provider: "anthropic"
+        family: "claude-3.5"
+        context_window: 200000
+        pricing: "anthropic_rates"
+        capabilities: ["coding", "reasoning", "planning"]
+        recommended_for: ["complex_tasks", "enterprise"]
+
+      - id: "claude-3-haiku"
+        provider: "anthropic"
+        family: "claude-3"
+        context_window: 200000
+        pricing: "anthropic_rates"
+        capabilities: ["coding", "fast_responses"]
+        recommended_for: ["quick_tasks", "prototyping"]
+
+      - id: "gpt-4o"
+        provider: "openai"
+        family: "gpt-4o"
+        context_window: 128000
+        pricing: "openai_rates"
+        capabilities: ["coding", "reasoning", "multimodal"]
+        recommended_for: ["balanced_performance"]
+
+      - id: "gpt-4o-mini"
+        provider: "openai"
+        family: "gpt-4o"
+        context_window: 128000
+        pricing: "openai_rates"
+        capabilities: ["coding", "fast_responses"]
+        recommended_for: ["editor_interactions", "cost_efficient"]
+
+      - id: "gemini-2.5-pro"
+        provider: "google"
+        family: "gemini-2.5"
+        context_window: 1000000
+        pricing: "google_rates"
+        capabilities: ["coding", "large_context", "multimodal"]
+        recommended_for: ["large_codebases", "complex_reasoning"]
+
+      - id: "deepseek-r1"
+        provider: "deepseek"
+        family: "deepseek-r1"
+        context_window: 128000
+        pricing: "deepseek_rates"
+        capabilities: ["coding", "reasoning", "cost_efficient"]
+        recommended_for: ["budget_conscious", "reasoning_tasks"]
+
+      - id: "grok-beta"
+        provider: "xai"
+        family: "grok"
+        context_window: 128000
+        pricing: "xai_rates"
+        capabilities: ["coding", "humor", "reasoning"]
+        recommended_for: ["creative_coding", "fun_interactions"]
+
+      - id: "mistral-large"
+        provider: "mistral"
+        family: "mistral-large"
+        context_window: 128000
+        pricing: "mistral_rates"
+        capabilities: ["coding", "multilingual", "reasoning"]
+        recommended_for: ["multilingual", "european_users"]
+
+      - id: "qwen-2.5-coder"
+        provider: "alibaba"
+        family: "qwen-2.5"
+        context_window: 128000
+        pricing: "alibaba_rates"
+        capabilities: ["coding", "code_generation", "reasoning"]
+        recommended_for: ["code_generation", "asian_users"]
+
+      - id: "cerebras-llama-3.1"
+        provider: "cerebras"
+        family: "llama-3.1"
+        context_window: 128000
+        pricing: "cerebras_rates"
+        capabilities: ["coding", "fast_inference", "open_source"]
+        recommended_for: ["speed", "open_source"]
+
+      - id: "amazon-bedrock-models"
+        provider: "amazon"
+        family: "bedrock"
+        context_window: 200000
+        pricing: "aws_rates"
+        capabilities: ["enterprise", "secure", "scalable"]
+        recommended_for: ["enterprise", "compliance"]
+
+      - id: "meta-llama-3.2"
+        provider: "meta"
+        family: "llama-3.2"
+        context_window: 128000
+        pricing: "meta_rates"
+        capabilities: ["coding", "open_source", "multilingual"]
+        recommended_for: ["open_source", "research"]
+
+      - id: "litellm-proxy"
+        provider: "litellm"
+        family: "proxy"
+        context_window: 128000
+        pricing: "custom_rates"
+        capabilities: ["proxy", "unified_api", "multiple_providers"]
+        recommended_for: ["multiple_providers", "unified_management"]
+
+  # Roo Code - https://roocode.com/
+  roo_code:
+    name: "Roo Code"
+    website: "https://roocode.com/"
+    github: "https://github.com/RooCodeInc/Roo-Code"
+    description: "AI dev team avec modes spécialisés et architecture ouverte"
+    supported_models:
+      - id: "claude-3-5-sonnet"
+        provider: "anthropic"
+        family: "claude-3.5"
+        context_window: 200000
+        pricing: "anthropic_rates"
+        capabilities: ["coding", "reasoning", "planning", "agent_modes"]
+        recommended_for: ["complex_projects", "team_collaboration"]
+
+      - id: "gpt-4o"
+        provider: "openai"
+        family: "gpt-4o"
+        context_window: 128000
+        pricing: "openai_rates"
+        capabilities: ["coding", "reasoning", "multimodal"]
+        recommended_for: ["balanced_performance", "quick_iteration"]
+
+      - id: "gpt-4"
+        provider: "openai"
+        family: "gpt-4"
+        context_window: 8192
+        pricing: "openai_rates"
+        capabilities: ["coding", "reasoning", "legacy_support"]
+        recommended_for: ["legacy_projects", "detailed_analysis"]
+
+      - id: "o1"
+        provider: "openai"
+        family: "o1"
+        context_window: 128000
+        pricing: "openai_rates"
+        capabilities: ["reasoning", "complex_tasks", "step_by_step"]
+        recommended_for: ["optimization", "debugging", "architecture"]
+
+      - id: "gemini-models"
+        provider: "google"
+        family: "gemini"
+        context_window: 1000000
+        pricing: "google_rates"
+        capabilities: ["coding", "large_context", "multimodal", "fast"]
+        recommended_for: ["large_codebases", "multimodal_tasks"]
+
+      - id: "grok-models"
+        provider: "xai"
+        family: "grok"
+        context_window: 128000
+        pricing: "xai_rates"
+        capabilities: ["coding", "humor", "reasoning", "creative"]
+        recommended_for: ["creative_coding", "fun_development"]
+
+      - id: "qwen-models"
+        provider: "alibaba"
+        family: "qwen"
+        context_window: 128000
+        pricing: "alibaba_rates"
+        capabilities: ["coding", "multilingual", "code_generation"]
+        recommended_for: ["multilingual_teams", "code_generation"]
+
+      - id: "kimi-models"
+        provider: "moonshot"
+        family: "kimi"
+        context_window: 128000
+        pricing: "moonshot_rates"
+        capabilities: ["coding", "chinese", "reasoning"]
+        recommended_for: ["chinese_development", "asian_markets"]
+
+      - id: "mistral-models"
+        provider: "mistral"
+        family: "mistral"
+        context_window: 128000
+        pricing: "mistral_rates"
+        capabilities: ["coding", "multilingual", "european_focus"]
+        recommended_for: ["european_users", "multilingual_support"]
+
+      - id: "ollama-local"
+        provider: "ollama"
+        family: "local"
+        context_window: 4096
+        pricing: "free"
+        capabilities: ["local", "privacy", "offline"]
+        recommended_for: ["privacy", "offline_work", "cost_free"]
+
+  # KiloCode - https://github.com/Kilo-Org/kilocode
+  kilocode:
+    name: "KiloCode"
+    website: "https://github.com/Kilo-Org/kilocode"
+    github: "https://github.com/Kilo-Org/kilocode"
+    description: "AI coding assistant open source pour planification et construction"
+    supported_models:
+      - id: "gemini-models"
+        provider: "google"
+        family: "gemini"
+        context_window: 1000000
+        pricing: "google_rates"
+        capabilities: ["coding", "planning", "building", "fixing"]
+        recommended_for: ["planning", "building", "fixing_code"]
+
+      - id: "claude-sonnet"
+        provider: "anthropic"
+        family: "claude-3.5"
+        context_window: 200000
+        pricing: "anthropic_rates"
+        capabilities: ["coding", "reasoning", "planning"]
+        recommended_for: ["complex_reasoning", "planning"]
+
+# Configuration globale des providers
+providers:
+  anthropic:
+    name: "Anthropic"
+    website: "https://anthropic.com"
+    api_docs: "https://docs.anthropic.com"
+    models_endpoint: "https://api.anthropic.com/v1/messages"
+    rate_limits:
+      requests_per_minute: 50
+      tokens_per_minute: 40000
+    pricing_model: "input_output_tokens"
+
+  openai:
+    name: "OpenAI"
+    website: "https://openai.com"
+    api_docs: "https://platform.openai.com/docs"
+    models_endpoint: "https://api.openai.com/v1/chat/completions"
+    rate_limits:
+      requests_per_minute: 10000
+      tokens_per_minute: 2000000
+    pricing_model: "input_output_tokens"
+
+  google:
+    name: "Google AI"
+    website: "https://ai.google.dev"
+    api_docs: "https://ai.google.dev/docs"
+    models_endpoint: "https://generativelanguage.googleapis.com"
+    rate_limits:
+      requests_per_minute: 60
+      tokens_per_minute: 32000
+    pricing_model: "input_output_tokens"
+
+  xai:
+    name: "xAI"
+    website: "https://x.ai"
+    api_docs: "https://docs.x.ai"
+    models_endpoint: "https://api.x.ai/v1/chat/completions"
+    rate_limits:
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    pricing_model: "input_output_tokens"
+
+  deepseek:
+    name: "DeepSeek"
+    website: "https://deepseek.com"
+    api_docs: "https://platform.deepseek.com"
+    models_endpoint: "https://api.deepseek.com/v1/chat/completions"
+    rate_limits:
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    pricing_model: "input_output_tokens"
+
+  mistral:
+    name: "Mistral AI"
+    website: "https://mistral.ai"
+    api_docs: "https://docs.mistral.ai"
+    models_endpoint: "https://api.mistral.ai/v1/chat/completions"
+    rate_limits:
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    pricing_model: "input_output_tokens"
+
+  alibaba:
+    name: "Alibaba Cloud"
+    website: "https://alibaba.com"
+    api_docs: "https://help.aliyun.com"
+    models_endpoint: "https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation"
+    rate_limits:
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    pricing_model: "input_output_tokens"
+
+  cerebras:
+    name: "Cerebras"
+    website: "https://cerebras.net"
+    api_docs: "https://docs.cerebras.ai"
+    models_endpoint: "https://api.cerebras.ai/v1/chat/completions"
+    rate_limits:
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    pricing_model: "input_output_tokens"
+
+  amazon:
+    name: "Amazon Web Services"
+    website: "https://aws.amazon.com"
+    api_docs: "https://docs.aws.amazon.com/bedrock"
+    models_endpoint: "https://bedrock-runtime.{region}.amazonaws.com"
+    rate_limits:
+      requests_per_minute: 1000
+      tokens_per_minute: 100000
+    pricing_model: "input_output_tokens"
+
+  meta:
+    name: "Meta"
+    website: "https://meta.com"
+    api_docs: "https://llama.meta.com"
+    models_endpoint: "https://api.meta.com/llama"
+    rate_limits:
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    pricing_model: "open_source"
+
+  litellm:
+    name: "LiteLLM"
+    website: "https://litellm.ai"
+    api_docs: "https://docs.litellm.ai"
+    models_endpoint: "https://api.litellm.ai/v1/chat/completions"
+    rate_limits:
+      requests_per_minute: 1000
+      tokens_per_minute: 1000000
+    pricing_model: "proxy_rates"
+
+  moonshot:
+    name: "Moonshot AI"
+    website: "https://moonshot.ai"
+    api_docs: "https://platform.moonshot.ai"
+    models_endpoint: "https://api.moonshot.ai/v1/chat/completions"
+    rate_limits:
+      requests_per_minute: 100
+      tokens_per_minute: 100000
+    pricing_model: "input_output_tokens"
+
+  ollama:
+    name: "Ollama"
+    website: "https://ollama.ai"
+    api_docs: "https://github.com/jmorganca/ollama"
+    models_endpoint: "http://localhost:11434/api/generate"
+    rate_limits:
+      requests_per_minute: 1000
+      tokens_per_minute: 1000000
+    pricing_model: "free"
+
+# Configuration des tâches et recommandations
+task_recommendations:
+  code_analysis:
+    primary_models: ["claude-3-5-sonnet", "gpt-4o", "gemini-2.5-pro"]
+    secondary_models: ["o1", "deepseek-r1", "mistral-large"]
+    avoid_models: []
+
+  code_generation:
+    primary_models: ["gpt-4o", "claude-3-5-sonnet", "gemini-2.5-pro"]
+    secondary_models: ["qwen-2.5-coder", "cerebras-llama-3.1"]
+    avoid_models: []
+
+  debugging:
+    primary_models: ["o1", "claude-3-5-sonnet", "gpt-4o"]
+    secondary_models: ["deepseek-r1", "mistral-large"]
+    avoid_models: []
+
+  planning:
+    primary_models: ["claude-3-5-sonnet", "o1", "gpt-4o"]
+    secondary_models: ["gemini-2.5-pro", "deepseek-r1"]
+    avoid_models: ["gpt-4o-mini", "claude-3-haiku"]
+
+  optimization:
+    primary_models: ["o1", "claude-3-5-sonnet", "deepseek-r1"]
+    secondary_models: ["gpt-4o", "mistral-large"]
+    avoid_models: []
+
+  documentation:
+    primary_models: ["gpt-4o", "claude-3-5-sonnet", "gemini-2.5-pro"]
+    secondary_models: ["mistral-large", "qwen-2.5-coder"]
+    avoid_models: []
+
+  testing:
+    primary_models: ["gpt-4o", "claude-3-5-sonnet", "gemini-2.5-pro"]
+    secondary_models: ["qwen-2.5-coder", "cerebras-llama-3.1"]
+    avoid_models: []
+
+# Métriques et monitoring
+monitoring:
+  enabled: true
+  metrics:
+    - response_time
+    - token_usage
+    - success_rate
+    - cost_per_request
+    - context_utilization
+
+  alerts:
+    high_cost_threshold: 0.01  # USD per request
+    low_success_threshold: 0.8  # 80% success rate
+    high_latency_threshold: 30000  # 30 seconds
+
+# Version et métadonnées
+version: "1.0.0"
+last_updated: "2025-11-09"
+maintainers: ["ECOS CLI Team"]
+description: "Base de données centralisée des modèles LLM pour VS Code LM Proxy"

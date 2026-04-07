@@ -1,0 +1,75 @@
+{
+  "models": [
+    {
+      "name": "claude-3-5-sonnet-20241022",
+      "provider": "anthropic",
+      "context_size": 200000,
+      "capabilities": [
+        "code_analysis",
+        "code_generation",
+        "debugging",
+        "reasoning",
+        "writing"
+      ],
+      "latency_ms": 2500,
+      "tokens_per_sec": 80,
+      "cost_per_token": 0.000015,
+      "max_tokens_per_request": 4096,
+      "supported_parameters": ["temperature", "max_tokens", "top_p"],
+      "status": "active"
+    },
+    {
+      "name": "gpt-4",
+      "provider": "openai",
+      "context_size": 8192,
+      "capabilities": [
+        "code_analysis",
+        "code_generation",
+        "debugging",
+        "reasoning",
+        "writing"
+      ],
+      "latency_ms": 2800,
+      "tokens_per_sec": 60,
+      "cost_per_token": 0.00006,
+      "max_tokens_per_request": 4096,
+      "supported_parameters": [
+        "temperature",
+        "max_tokens",
+        "top_p",
+        "frequency_penalty"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "grok-beta",
+      "provider": "xai",
+      "context_size": 128000,
+      "capabilities": ["reasoning", "code_analysis", "writing", "research"],
+      "latency_ms": 2200,
+      "tokens_per_sec": 90,
+      "cost_per_token": 0.00001,
+      "max_tokens_per_request": 4096,
+      "supported_parameters": ["temperature", "max_tokens", "top_p"],
+      "status": "active"
+    }
+  ],
+  "providers": {
+    "anthropic": {
+      "base_url": "https://api.anthropic.com",
+      "api_version": "2023-06-01",
+      "rate_limit": 50,
+      "timeout": 60
+    },
+    "openai": {
+      "base_url": "https://api.openai.com/v1",
+      "rate_limit": 100,
+      "timeout": 60
+    },
+    "xai": {
+      "base_url": "https://api.x.ai/v1",
+      "rate_limit": 30,
+      "timeout": 60
+    }
+  }
+}
