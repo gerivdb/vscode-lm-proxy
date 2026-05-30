@@ -1,68 +1,100 @@
+---
+relay_version: 5
+repo: gerivdb/vscode-lm-proxy
+strate: L5
+lifecycle: ACTIVE
+vague: 5
+synchro: '2026-05-30'
+hub: gerivdb/GOVERNANCE-HUB
+intent_hash: '0x418CB37C78A983BA'
+phi_cps:
+  value: null
+  source: NOT_MEASURED
+  valid: false
+  note: 3.697 was a mass placeholder — replaced by null
+rules:
+- id: R1
+  assertion: LYCOS est un fork CodeDB avec FLUENCE matrix encoding + Janus compression
+    — Zig.
+  eval_cmd: null
+  status: UNVERIFIED
+  severity: HIGH
+- id: R2
+  assertion: vsix-ai-orchestre uniquement les agents VSCode (Cline, Kilocode, Copilot).
+  eval_cmd: null
+  status: UNVERIFIED
+  severity: MEDIUM
+- id: R3
+  assertion: CodeDB-E5620 = Zig binary pour Xeon E5620 sans AVX.
+  eval_cmd: null
+  status: UNVERIFIED
+  severity: HIGH
+---
+
 # STRATUM RELAY — vscode-lm-proxy (L5)
 
-**VAGUE**: 4 | **Synchro**: 2026-05-30 | **Hub**: gerivdb/LLM-REPO
+**VAGUE**: 5 | **Synchro**: 2026-05-30 | **Hub**: gerivdb/GOVERNANCE-HUB
+
+---
+
+## Identite stratique
 
 - **Strate** : `L5` — IA distribuee & LLM
-- **Role canonique** : Proxy LM pour VSCode — bridge modeles locaux/cloud
-- **Parent** : L4 (infrastructure)
+- **Role canonique** : Proxy LM pour VSCode Ã”Ã‡Ã¶ bridge modeles locaux/cloud
+- **Parent** : L4
+- **Enfants** : L6
+- **phi-CPS** : null (NOT_MEASURED)
+
+## Navigation rapide
+
+- PRD canonique : `GOVERNANCE-HUB/PRD/PRD_ECOSYSTEM_SUPERSTRUCTURE_L0-L9_V1.md`
+- Substrat cognitif : `gerivdb/LLM-REPO` (L1b — prive)
+- Standards repo : `REPO-STANDARDS` (RSS-v1)
+- Transit map : `VERSUS/urban_ontology_verse/TRANSIT/transit_map.yaml`
+- Cadastre : `VERSUS/urban_ontology_verse/CADASTRE/cadastre_full.yaml`
 
 ## Regles locales
-- R1 — vscode-lm-proxy est le bridge entre VSCode et les modeles LLM.
-- R2 — Tout acces LLM depuis VSCode passe par vscode-lm-proxy.
-- Anti-pattern: acceder directement a un modele LLM depuis VSCode sans le proxy.
 
-## Karpathy-Recall local (Vague 3 — 10Q)
-1. Quel est le role de vscode-lm-proxy dans l'ecosysteme ?
-2. Pourquoi VSCode ne doit-il pas acceder directement aux modeles LLM ?
-3. Quelle est la difference entre vscode-lm-proxy et vsix-ai-orchestrator ?
-4. Que se passe-t-il si le proxy est desactive ?
-5. Dans quelle phase UrbanVerse ce STRATUM_RELAY a-t-il ete deploye ?
-6. Quels types de modeles LLM (locaux et cloud) vscode-lm-proxy peut-il bridge ?
-7. Comment vscode-lm-proxy gere-t-il le basculement entre un modele local et un modele cloud ?
-8. Quels sont les avantages de passer par un proxy pour le routage des requetes LLM dans VSCode ?
-9. Comment vscode-lm-proxy s'interface-t-il avec vsix-ai-orchestrator pour l'orchestration multi-agent ?
-10. Quelles mesures de securite le proxy applique-t-il sur les requetes LLM ?
+- **R1** — LYCOS est un fork CodeDB avec FLUENCE matrix encoding + Janus compression — Zig.  [UNVERIFIED]
+- **R2** — vsix-ai-orchestre uniquement les agents VSCode (Cline, Kilocode, Copilot).  [UNVERIFIED]
+- **R3** — CodeDB-E5620 = Zig binary pour Xeon E5620 sans AVX.  [UNVERIFIED]
+
+## Karpathy-Recall etendu (Vague 5 — 10Q)
+
+> Reponds mentalement a ces questions avant d'agir dans ce repo.
+
+1. Q: Quel est le role de PLIX comme langage video ternaire pour LLM ?
+2. Q: vsix-ai-orchestrator orchestre quels agents IDE (Cline, Kilocode, Copilot) ?
+3. Q: Comment FLUENCE alimente-t-il les repos L5 ?
+4. Q: Quelle est la frontiere de responsabilite entre L4 (infra) et L5 (IA distribuee) ?
+5. Q: LYCOS est un fork CodeDB avec quelles extensions FLUENCE ?
+6. Q: CodeDB-E5620 — pourquoi Zig et pas Go/Rust pour le Xeon E5620 sans AVX ?
+7. Q: vscode-lm-proxy joue quel role entre les modeles locaux et cloud ?
+8. Q: Quel est le role de LYCOS matrix encoding + Janus compression dans l'ecosysteme Zig ?
+9. Q: Pourquoi l'inference LLM distribuee doit-elle passer par les repos L5 et non L2 ?
+10. Q: Dans quelle phase UrbanVerse le STRATUM_RELAY de ce repo a-t-il ete deploye ?
 
 ## Dependances directes
 
-### Parents (Amont)
-| Depot | Niveau | Role |
-|-------|--------|------|
-| KIVA | L4 | Infrastructure — hub d'orchestration principal |
+**Parents (amont) :**
+- KIVA
+- GATEWAY-MANAGER
+- PULSE
+- FERMI-EVER
+- CodeDB-E5620
 
-### Enfants (Aval)
-Aucun — vscode-lm-proxy est un composant feuille de L5.
-
-## Agents locaux (Vague 4)
-
-```yaml
-# .roomodes — profil agent vscode-lm-proxy
-agent: lm-proxy-bridge
-strate: L5
-role: LLM access proxy for VSCode
-rules: vscode-lm-proxy/rules/proxy_rules.yaml
-hub_ref: KIVA
-```
-
-L'agent `lm-proxy-bridge` fait le pont entre VSCode et les modeles LLM locaux/cloud et applique le routage securise.
-
-## Auto-conformite (Vague 4)
-
-- **Guard 1 — Proxy-only LLM access** : Aucun acces LLM depuis VSCode ne peut contourner le proxy.
-- **Guard 2 — Failover local/cloud** : En cas d'indisponibilite, le proxy bascule automatiquement entre local et cloud.
-- **Guard 3 — Request security** : Le proxy filtre et securise toutes les requetes LLM.
+**Enfants (aval) :**
+- vsix-ai-orchestrator
+- PLIX
 
 ## Vague de mise a jour
 
-| Vague | Statut | Date | Changements |
-|-------|--------|------|-------------|
-| V1 | Deploye | 2026-05-28 | Creation initiale — identite, regles, 5Q Karpathy |
-| V2 | Deploye | 2026-05-29 | Synchronisation Hub LLM-REPO — 5Q Karpathy-Recall |
-| V3 | Deploye | 2026-05-30 | 10Q Karpathy-Recall + section Dependances |
-| **V4** | **Deploye** | **2026-05-30** | **Agents locaux (.roomodes) + Auto-conformite (3 guards) deployes** |
+| Vague | Contenu | Statut |
+|-------|---------|--------|
+| **5 (courante)** | Frontmatter YAML + regles structurees + phi_cps null honnete | Deploye |
+| 6 (suivante) | Eval cmd sandbox + HMAC + hardware constraints | Planifie |
 
 ---
 
 *Genere par `VERSUS/urban_ontology_verse/TOOLS/relay_propagator.py` v4.0*
-*UrbanVerse v4.0.0 — gerivdb/VERSUS (L8)*
-*IntentHash: 0xPHASE8_VSCODE_LM_PROXY_V4_20260530*
+*UrbanVerse v1.0.0 — gerivdb/VERSUS (L8)*
