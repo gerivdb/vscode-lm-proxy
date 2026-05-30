@@ -1,6 +1,6 @@
 # STRATUM RELAY — vscode-lm-proxy (L5)
 
-**VAGUE**: 3 | **Synchro**: 2026-05-30 | **Hub**: gerivdb/LLM-REPO
+**VAGUE**: 4 | **Synchro**: 2026-05-30 | **Hub**: gerivdb/LLM-REPO
 
 - **Strate** : `L5` — IA distribuee & LLM
 - **Role canonique** : Proxy LM pour VSCode — bridge modeles locaux/cloud
@@ -33,11 +33,36 @@
 ### Enfants (Aval)
 Aucun — vscode-lm-proxy est un composant feuille de L5.
 
+## Agents locaux (Vague 4)
+
+```yaml
+# .roomodes — profil agent vscode-lm-proxy
+agent: lm-proxy-bridge
+strate: L5
+role: LLM access proxy for VSCode
+rules: vscode-lm-proxy/rules/proxy_rules.yaml
+hub_ref: KIVA
+```
+
+L'agent `lm-proxy-bridge` fait le pont entre VSCode et les modeles LLM locaux/cloud et applique le routage securise.
+
+## Auto-conformite (Vague 4)
+
+- **Guard 1 — Proxy-only LLM access** : Aucun acces LLM depuis VSCode ne peut contourner le proxy.
+- **Guard 2 — Failover local/cloud** : En cas d'indisponibilite, le proxy bascule automatiquement entre local et cloud.
+- **Guard 3 — Request security** : Le proxy filtre et securise toutes les requetes LLM.
+
 ## Vague de mise a jour
 
 | Vague | Statut | Date | Changements |
 |-------|--------|------|-------------|
 | V1 | Deploye | 2026-05-28 | Creation initiale — identite, regles, 5Q Karpathy |
 | V2 | Deploye | 2026-05-29 | Synchronisation Hub LLM-REPO — 5Q Karpathy-Recall |
-| V3 | **Deploye** | **2026-05-30** | **10Q Karpathy-Recall + section Dependances** |
-| V4 | Planifie | — | Enrichissement regles + cas d'usage avances |
+| V3 | Deploye | 2026-05-30 | 10Q Karpathy-Recall + section Dependances |
+| **V4** | **Deploye** | **2026-05-30** | **Agents locaux (.roomodes) + Auto-conformite (3 guards) deployes** |
+
+---
+
+*Genere par `VERSUS/urban_ontology_verse/TOOLS/relay_propagator.py` v4.0*
+*UrbanVerse v4.0.0 — gerivdb/VERSUS (L8)*
+*IntentHash: 0xPHASE8_VSCODE_LM_PROXY_V4_20260530*
