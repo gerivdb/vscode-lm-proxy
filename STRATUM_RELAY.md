@@ -4,7 +4,7 @@ repo: gerivdb/vscode-lm-proxy
 strate: L5
 lifecycle: ACTIVE
 vague: 5
-synchro: '2026-05-30'
+synchro: '2026-05-31'
 hub: gerivdb/GOVERNANCE-HUB
 intent_hash: '0x418CB37C78A983BA'
 phi_cps:
@@ -33,14 +33,14 @@ rules:
 
 # STRATUM RELAY — vscode-lm-proxy (L5)
 
-**VAGUE**: 5 | **Synchro**: 2026-05-30 | **Hub**: gerivdb/GOVERNANCE-HUB
+**VAGUE**: 5 | **Synchro**: 2026-05-31 | **Hub**: gerivdb/GOVERNANCE-HUB
 
 ---
 
 ## Identite stratique
 
 - **Strate** : `L5` — IA distribuee & LLM
-- **Role canonique** : Proxy LM pour VSCode Ã”Ã‡Ã¶ bridge modeles locaux/cloud
+- **Role canonique** : Proxy LM pour VSCode  -  bridge modeles locaux/cloud
 - **Parent** : L4
 - **Enfants** : L6
 - **phi-CPS** : null (NOT_MEASURED)
