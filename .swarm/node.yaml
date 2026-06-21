@@ -1,0 +1,16 @@
+# .swarm/node.yaml — Carte d'identité holographique
+# Chaque repo gerivdb possède ce fichier : c'est son ADN dans l'organisme
+# IntentHash: 0xSWARM_NODE_GENOME_20260622
+node:
+  name: vscode-lm-proxy
+  full_name: gerivdb/vscode-lm-proxy
+  url: https://github.com/gerivdb/vscode-lm-proxy
+  layer: L4_TOOLS
+  strate: L4_TOOLS
+  role: "Outil: vscode-lm-proxy"
+  lens: cold
+  phi_cps: 1.0
+  thousand_brains_ref: false
+  do_not_create: true
+  upstream: ["NEXUS"]
+  downstream: []
